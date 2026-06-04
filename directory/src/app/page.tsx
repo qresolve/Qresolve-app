@@ -104,12 +104,14 @@ export default function HomePage() {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const get = (k: string) => (fd.get(k)?.toString().trim() || "");
+    const company = get("company");
+    const name = get("name");
     const summary =
 `New Relay demo request
 
-Name: ${get("name")}
+Name: ${name}
 Email: ${get("email")}
-Company: ${get("company")}
+Company: ${company}
 Phone / WhatsApp: ${get("phone") || "Not provided"}
 Role: ${get("role") || "Not provided"}
 Industry: ${get("industry")}
@@ -119,9 +121,16 @@ Current process: ${get("current_process") || "Not provided"}
 Biggest pain: ${get("pain") || "Not provided"}
 
 Demo focus:
-${get("message") || "Not provided"}`;
+${get("message") || "Not provided"}
+
+Source: QResolve landing page`;
     setLeadSummary(summary);
     setLeadSubmitted(true);
+
+    // Open user's email client pre-filled to team@qresolve.com
+    const subject = encodeURIComponent(`Relay Pilot Demo Request — ${company || name}`);
+    const body = encodeURIComponent(summary);
+    window.location.href = `mailto:team@qresolve.com?subject=${subject}&body=${body}`;
   };
 
   useEffect(() => {
@@ -961,10 +970,10 @@ ${get("message") || "Not provided"}`;
               <div style={{ padding: 24, background: "var(--accent-glow)", border: "1px solid var(--accent)", borderRadius: 12 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                   <CheckCircle2 size={20} style={{ color: "var(--accent)" }} />
-                  <strong style={{ color: "var(--accent)" }}>Enquiry captured</strong>
+                  <strong style={{ color: "var(--accent)" }}>Enquiry ready to send</strong>
                 </div>
                 <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)", marginBottom: 16 }}>
-                  Thanks — the QResolve team will reach out to scope your pilot. Summary below:
+                  Your email client should have opened a draft to <a href="mailto:team@qresolve.com" style={{ color: "var(--accent)" }}>team@qresolve.com</a>. Just hit send and the QResolve team will reach out to scope your pilot. If nothing opened, copy the summary below and email it manually.
                 </p>
                 <pre style={{ whiteSpace: "pre-wrap", fontSize: "0.78rem", color: "var(--text-secondary)", background: "var(--bg-secondary)", border: "1px solid var(--border)", borderRadius: 8, padding: 14, fontFamily: "monospace", overflow: "auto", maxHeight: 320 }}>
                   {leadSummary}
