@@ -2867,7 +2867,7 @@ footer {
 /* Footer layout */
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 40px;
   margin-bottom: 40px;
 }
@@ -4082,5 +4082,1054 @@ footer {
   /* Footer grid already 1-col, just tighten gap */
   .footer-grid {
     gap: 24px;
+  }
+}
+
+/* Hide number input spinner arrows (calculator inputs) */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no-spinner {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Hero 2-column layout (v3 content update) */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-grid .hero-copy h1 {
+  max-width: 100%;
+  font-size: clamp(36px, 4.4vw, 60px);
+}
+.hero-grid .hero-copy .hero-sub {
+  max-width: 100%;
+  margin-top: 20px;
+  font-size: 17px;
+}
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-grid .hero-copy h1 {
+    font-size: clamp(32px, 7vw, 48px);
+  }
+}
+
+/* ==========================================
+   LEAD FORM — Custom, theme-aligned controls
+   ========================================== */
+
+/* Field group */
+.lf-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lf-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lf-label .req {
+  color: var(--accent);
+  margin-left: 4px;
+}
+
+/* Base input/select/textarea */
+.lf-control {
+  width: 100%;
+  padding: 11px 14px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.lf-control::placeholder {
+  color: var(--text-muted);
+}
+.lf-control:hover {
+  border-color: var(--border-light);
+}
+.lf-control:focus,
+.lf-control:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* Override browser autofill yellow background + black text */
+.lf-control:-webkit-autofill,
+.lf-control:-webkit-autofill:hover,
+.lf-control:-webkit-autofill:focus,
+.lf-control:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--text-primary);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-secondary) inset;
+  box-shadow: 0 0 0 1000px var(--bg-secondary) inset;
+  caret-color: var(--text-primary);
+  transition: background-color 9999s ease-in-out 0s;
+}
+.lf-control:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-secondary) inset, 0 0 0 2px var(--accent-glow);
+  box-shadow: 0 0 0 1000px var(--bg-secondary) inset, 0 0 0 2px var(--accent-glow);
+}
+
+/* Select with custom chevron */
+.lf-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2334d399' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.lf-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+.lf-select option:disabled {
+  color: var(--text-muted);
+}
+
+/* Textarea */
+.lf-textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.55;
+}
+
+/* Custom checkbox */
+.lf-checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  padding: 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.lf-checkbox-wrap:hover {
+  border-color: var(--border-light);
+  background: var(--bg-card);
+}
+.lf-checkbox-wrap:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+.lf-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border: 1.5px solid var(--border-light);
+  border-radius: 5px;
+  background: var(--bg-primary);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.18s ease;
+}
+.lf-checkbox:hover {
+  border-color: var(--accent);
+}
+.lf-checkbox:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.lf-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--bg-primary);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.lf-checkbox:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.lf-checkbox-text {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.lf-checkbox-text small {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Submit/secondary action */
+.lf-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.lf-submit {
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px var(--accent-glow-strong);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.lf-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px var(--accent-glow-strong);
+}
+.lf-submit:active {
+  transform: translateY(0);
+}
+.lf-link {
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.15s ease;
+}
+.lf-link:hover {
+  opacity: 0.8;
+}
+
+/* Section dividers inside the form */
+.lf-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lf-fieldset-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ==========================================
+   CUSTOM DROPDOWN
+   ========================================== */
+.lf-dd {
+  position: relative;
+}
+.lf-dd-trigger {
+  width: 100%;
+  padding: 11px 14px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.lf-dd-trigger:hover {
+  border-color: var(--border-light);
+}
+.lf-dd-trigger:focus-visible,
+.lf-dd[data-open="true"] .lf-dd-trigger {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.lf-dd-placeholder {
+  color: var(--text-muted);
+}
+.lf-dd-chevron {
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+.lf-dd[data-open="true"] .lf-dd-chevron {
+  transform: rotate(180deg);
+}
+
+/* Popover list */
+.lf-dd-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/old Edge */
+  padding: 6px;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.lf-dd[data-open="true"] .lf-dd-list {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.lf-dd-option {
+  padding: 9px 12px;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+.lf-dd-option:hover,
+.lf-dd-option[data-active="true"] {
+  background-color: var(--bg-card-hover);
+}
+.lf-dd-option[data-selected="true"] {
+  color: var(--accent);
+  background-color: var(--accent-glow);
+}
+.lf-dd-option[data-selected="true"]::after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  border: solid var(--accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+
+/* Hide scrollbar on the dropdown list (still scrollable) */
+.lf-dd-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* === HMR nudge === */
+
+/* ==========================================
+   MOBILE — v3 landing-page responsive overrides
+   ========================================== */
+@media (max-width: 768px) {
+  /* Tighten section paddings everywhere on the v3 landing */
+  section[id="problem"],
+  section[id="how"],
+  section[id="embedded-demo"],
+  section[id="solutions"],
+  section[id="calculator"],
+  section[id="features"],
+  section[id="directory"],
+  section[id="categories"],
+  section[id="ecosystem"],
+  section[id="ai"],
+  section[id="comparison"],
+  section[id="lead-capture"],
+  section[id="pricing"],
+  section[id="about"] {
+    padding: 56px 16px !important;
+  }
+
+  /* Section titles (h2) */
+  .section-title {
+    font-size: clamp(20px, 6vw, 28px) !important;
+    line-height: 1.25 !important;
+  }
+  .section-desc {
+    font-size: 0.92rem !important;
+  }
+
+  /* Hero — kill big padding, fix scale */
+  .hero {
+    padding: 96px 16px 48px !important;
+  }
+  .hero-grid {
+    gap: 28px !important;
+  }
+  .hero-grid .hero-copy h1 {
+    font-size: clamp(28px, 8vw, 40px) !important;
+    line-height: 1.15 !important;
+  }
+  .hero-sub {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+  .hero-badge {
+    font-size: 12px !important;
+    padding: 5px 12px !important;
+  }
+  .audience-card {
+    padding: 20px !important;
+  }
+  .audience-card h3 {
+    font-size: 1.1rem !important;
+  }
+  .audience-card p {
+    font-size: 0.85rem !important;
+  }
+
+  /* h3 inside cards: scale down */
+  section[id="problem"] article h3,
+  section[id="how"] article h3,
+  section[id="solutions"] article h3,
+  section[id="features"] article h3,
+  section[id="directory"] article h3,
+  section[id="ecosystem"] h3,
+  section[id="ai"] article h3,
+  section[id="comparison"] article h3 {
+    font-size: 1.05rem !important;
+  }
+
+  /* Eyebrows */
+  section span[class*="eyebrow"],
+  .hero-badge {
+    font-size: 11px !important;
+  }
+
+  /* Buttons on mobile */
+  .btn,
+  .btn-accent,
+  .btn-outline {
+    padding: 11px 20px !important;
+    font-size: 0.85rem !important;
+  }
+  .lf-submit {
+    padding: 12px 22px !important;
+    font-size: 13px !important;
+  }
+
+  /* Lead-capture: tighten card padding (was 32 inline) */
+  section[id="lead-capture"] > div > div {
+    padding: 22px !important;
+  }
+  section[id="lead-capture"] h2 {
+    font-size: 1.5rem !important;
+  }
+  section[id="lead-capture"] h3 {
+    font-size: 1.05rem !important;
+  }
+
+  /* Calculator panels (were padding: 28 inline) */
+  section[id="calculator"] > div > div > div {
+    padding: 20px !important;
+  }
+  section[id="calculator"] .result-value,
+  section[id="calculator"] > div > div > div > div > div:nth-child(2) > div {
+    font-size: 2rem !important;
+  }
+  /* Currency toggle wraps */
+  section[id="calculator"] button {
+    padding: 5px 11px !important;
+    font-size: 0.72rem !important;
+  }
+
+  /* Decision card: was padding 48 inline */
+  section.reveal + div + section > div[style*="padding: 48px"],
+  section > div[style*="padding: 48"] {
+    padding: 28px 22px !important;
+  }
+
+  /* Two-column "split" headers stack on mobile */
+  section[id="embedded-demo"] > div > div:first-child,
+  section[id="directory"] > div > div:first-child,
+  section[id="ecosystem"] > div > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    align-items: start !important;
+  }
+
+  /* Directory layout — stack provider list + value cards */
+  section[id="directory"] > div > div:nth-child(2) {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  section[id="directory"] .provider-card,
+  section[id="directory"] article {
+    padding: 14px !important;
+  }
+  section[id="directory"] article h4 {
+    font-size: 0.9rem !important;
+  }
+
+  /* Pricing — disable featured scale (was 1.05) so they don't overflow */
+  .pricing-featured-scale,
+  section[id="pricing"] > div > div[style*="scale(1.05)"] {
+    transform: none !important;
+  }
+  section[id="pricing"] > div > div {
+    padding: 24px !important;
+  }
+  section[id="pricing"] h3 {
+    font-size: 1.15rem !important;
+  }
+  section[id="pricing"] span[style*="2.5rem"] {
+    font-size: 1.9rem !important;
+  }
+
+  /* AI insight quotes */
+  section[id="ai"] article h3 {
+    font-size: 0.95rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Comparison cards */
+  section[id="comparison"] article {
+    padding: 22px !important;
+  }
+  section[id="comparison"] h3 {
+    font-size: 1.1rem !important;
+  }
+
+  /* About section */
+  section[id="about"] .about-stats-grid > div {
+    padding: 16px !important;
+  }
+  section[id="about"] .about-stats-grid > div > div:first-child {
+    font-size: 1.5rem !important;
+  }
+
+  /* Final CTA */
+  section[style*="textAlign: \"center\""][style*="80px"] h2 {
+    font-size: 1.6rem !important;
+  }
+
+  /* Lead form fieldset titles smaller */
+  .lf-fieldset-title {
+    font-size: 0.62rem !important;
+  }
+  .lf-label {
+    font-size: 11px !important;
+  }
+
+  /* Dashboard preview status grid — keep 2 cols but reduce padding */
+  .hero-dashboard-shell {
+    margin-top: 0 !important;
+  }
+
+  /* Force divider less imposing */
+  .divider {
+    padding: 8px 0 !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  section[id="how"] > div > div > div,
+  section[id="solutions"] > div > div,
+  section[id="features"] > div > div,
+  section[id="problem"] > div > div,
+  section[id="ai"] > div > div,
+  section[id="comparison"] > div > div,
+  section[id="pricing"] > div > div,
+  section[id="ecosystem"] > div > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero {
+    padding: 88px 14px 40px !important;
+  }
+  .audience-split {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================
+   MOBILE PASS 2 — premium tightening (≤768px)
+   ========================================== */
+@media (max-width: 768px) {
+  /* Tighter section paddings: 56 → 40 */
+  section[id="problem"],
+  section[id="how"],
+  section[id="embedded-demo"],
+  section[id="solutions"],
+  section[id="calculator"],
+  section[id="features"],
+  section[id="directory"],
+  section[id="categories"],
+  section[id="ecosystem"],
+  section[id="ai"],
+  section[id="comparison"],
+  section[id="lead-capture"],
+  section[id="pricing"],
+  section[id="about"] {
+    padding: 40px 16px !important;
+  }
+
+  /* Section-header bottom margin: 48/60 → 24 */
+  section[id="problem"] > div:first-child,
+  section[id="how"] > div:first-child,
+  section[id="solutions"] > div:first-child,
+  section[id="calculator"] > div:first-child,
+  section[id="features"] > div:first-child,
+  section[id="ai"] > div:first-child,
+  section[id="comparison"] > div:first-child,
+  section[id="categories"] > div:first-child,
+  section[id="pricing"] > div:first-child {
+    margin-bottom: 24px !important;
+  }
+
+  /* Section titles — tighter, more elegant */
+  .section-title {
+    font-size: 1.4rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.01em !important;
+  }
+  .section-desc {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Card padding: 24 → 18 */
+  section[id="problem"] article,
+  section[id="how"] article,
+  section[id="solutions"] article,
+  section[id="features"] article,
+  section[id="ai"] article,
+  section[id="comparison"] article,
+  section[id="directory"] article {
+    padding: 18px !important;
+  }
+
+  /* Grid gaps */
+  section[id] > div > div[style*="grid"][style*="repeat"] {
+    gap: 14px !important;
+  }
+
+  /* Hero — reduce vertical bulk */
+  .hero {
+    padding: 84px 16px 32px !important;
+  }
+  .hero-grid {
+    gap: 24px !important;
+  }
+  .hero-grid .hero-copy h1 {
+    font-size: 26px !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em !important;
+  }
+  .hero-badge {
+    font-size: 10.5px !important;
+    margin-bottom: 14px !important;
+    padding: 4px 11px !important;
+  }
+  .hero-sub {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin-top: 14px !important;
+  }
+  .audience-split {
+    margin-top: 28px !important;
+    gap: 12px !important;
+  }
+  .audience-card {
+    padding: 16px !important;
+  }
+  .audience-card h3 {
+    font-size: 1rem !important;
+    margin-top: 4px !important;
+  }
+  .audience-card p {
+    font-size: 0.82rem !important;
+    margin-top: 6px !important;
+  }
+  .audience-label {
+    font-size: 10px !important;
+  }
+
+  /* Hero dashboard preview internals */
+  .hero-dashboard-shell > div:nth-child(2) {
+    padding: 14px !important;
+  }
+  .hero-dashboard-shell > div:nth-child(2) > div {
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  .hero-dashboard-shell > div:nth-child(2) > div > div {
+    padding: 10px !important;
+  }
+
+  /* Buttons — refined */
+  .btn,
+  .btn-accent,
+  .btn-outline {
+    padding: 10px 18px !important;
+    font-size: 0.82rem !important;
+  }
+
+  /* Calculator */
+  section[id="calculator"] > div > div {
+    gap: 14px !important;
+  }
+  section[id="calculator"] > div > div > div {
+    padding: 18px !important;
+  }
+  section[id="calculator"] div[style*="font-weight: 700"][style*="accent"] {
+    font-size: 1.8rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 10px !important;
+  }
+  section[id="calculator"] button {
+    padding: 5px 10px !important;
+    font-size: 0.7rem !important;
+  }
+  section[id="calculator"] input {
+    padding: 9px 12px !important;
+    font-size: 0.82rem !important;
+  }
+  section[id="calculator"] label {
+    font-size: 0.72rem !important;
+  }
+
+  /* Features cards */
+  section[id="features"] article {
+    padding: 16px !important;
+  }
+  section[id="features"] article h3 {
+    font-size: 0.95rem !important;
+    margin-bottom: 4px !important;
+  }
+  section[id="features"] article p {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Lead capture */
+  section[id="lead-capture"] > div > div {
+    padding: 20px !important;
+  }
+  section[id="lead-capture"] h2 {
+    font-size: 1.35rem !important;
+  }
+  section[id="lead-capture"] h3 {
+    font-size: 1rem !important;
+  }
+  .lf-fieldset {
+    gap: 10px !important;
+  }
+  .lf-fieldset-title {
+    font-size: 0.6rem !important;
+    padding-bottom: 6px !important;
+  }
+  section[id="lead-capture"] form {
+    gap: 18px !important;
+  }
+
+  /* Pricing — compact cards */
+  section[id="pricing"] > div > div {
+    padding: 20px !important;
+  }
+  section[id="pricing"] h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 6px !important;
+  }
+  section[id="pricing"] p {
+    font-size: 0.8rem !important;
+  }
+  section[id="pricing"] div[style*="font-weight: 700"] > span:first-child {
+    font-size: 1.7rem !important;
+  }
+  section[id="pricing"] ul li {
+    font-size: 0.82rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* AI insights */
+  section[id="ai"] article h3 {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 8px !important;
+  }
+  section[id="ai"] article {
+    padding: 16px !important;
+  }
+
+  /* Comparison */
+  section[id="comparison"] article {
+    padding: 18px !important;
+  }
+  section[id="comparison"] h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* About */
+  section[id="about"] h2 {
+    font-size: 1.35rem !important;
+  }
+  section[id="about"] p {
+    font-size: 0.88rem !important;
+  }
+  section[id="about"] .about-stats-grid > div {
+    padding: 14px !important;
+  }
+  section[id="about"] .about-stats-grid > div > div:first-child {
+    font-size: 1.3rem !important;
+  }
+
+  /* Decision card */
+  section > div[style*="border-radius: 16"][style*="48"] {
+    padding: 24px 18px !important;
+  }
+
+  /* ── FOOTER MOBILE — clear hierarchy + steady rhythm ── */
+  footer.footer > div {
+    padding: 32px 20px 24px !important;
+  }
+  /* Brand band: name (most prominent) + desc, divider below */
+  footer .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    column-gap: 16px !important;
+    row-gap: 28px !important;
+    margin-bottom: 24px !important;
+  }
+  footer .footer-brand {
+    grid-column: 1 / -1 !important;
+    padding-bottom: 24px !important;
+    border-bottom: 1px solid var(--border) !important;
+    margin-bottom: 4px !important;
+  }
+  footer .footer-brand-name {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: var(--accent) !important;
+    margin-bottom: 10px !important;
+    letter-spacing: -0.01em !important;
+  }
+  footer .footer-brand-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+    color: var(--text-secondary) !important;
+    max-width: none !important;
+  }
+  /* Column titles — more present than links, accent-tinted */
+  footer h4,
+  footer .footer-col-title {
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--text-primary) !important;
+    margin: 0 0 14px 0 !important;
+    line-height: 1 !important;
+  }
+  /* Link items — readable, generous rhythm */
+  footer .footer-links {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+  footer .footer-links li {
+    margin: 0 0 10px 0 !important;
+    line-height: 1 !important;
+  }
+  footer .footer-links li:last-child {
+    margin-bottom: 0 !important;
+  }
+  footer .footer-links a {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    transition: color 0.15s ease !important;
+  }
+  footer .footer-links a:hover {
+    color: var(--accent) !important;
+  }
+  /* Copyright line — quieter than links, full-bleed divider */
+  footer.footer > div > div:last-child {
+    padding: 18px 20px 0 !important;
+    margin: 0 -20px !important;
+    border-top: 1px solid var(--border) !important;
+    font-size: 0.72rem !important;
+    color: var(--text-muted) !important;
+  }
+  /* Drop bottom padding under copyright on mobile */
+  footer.footer > div {
+    padding-bottom: 18px !important;
+  }
+
+  /* Divider — barely there on mobile */
+  .divider {
+    padding: 0 !important;
+  }
+  .divider-line {
+    opacity: 0.4;
+  }
+
+  /* Stack 2-col "split headers" (direct child of section AND nested) */
+  section > div[style*="grid-template-columns: minmax"],
+  section > div > div[style*="grid-template-columns: minmax"] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    margin-bottom: 20px !important;
+    align-items: start !important;
+  }
+  section > div[style*="grid-template-columns: minmax"] p,
+  section > div > div[style*="grid-template-columns: minmax"] p {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* ── CALCULATOR — stack the input pairs ── */
+  section#calculator > div > div > div[style*="repeat"],
+  section#calculator > div > div > div[style*="1fr 1fr"],
+  section#calculator > div > div > div > div[style*="1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  /* Result-panel big number — already targeted, keep */
+  section#calculator > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── DIRECTORY — direct-child overrides ── */
+  /* Top split header (eyebrow+h2 ‖ description) — stack */
+  section#directory > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    margin-bottom: 24px !important;
+    align-items: start !important;
+  }
+  section#directory > div:first-child p {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+  /* Main 2-col layout (browser ‖ value cards) — stack */
+  section#directory > div:nth-child(2) {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  /* Directory browser card */
+  section#directory > div:nth-child(2) > div:first-child {
+    padding: 18px !important;
+  }
+  /* Browser top: kicker + h3 + "Verified only" badge → stack */
+  section#directory > div:nth-child(2) > div:first-child > div:first-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    margin-bottom: 14px !important;
+  }
+  section#directory > div:nth-child(2) > div:first-child > div:first-child h3 {
+    font-size: 0.95rem !important;
+    line-height: 1.35 !important;
+  }
+  /* Search bar — vertical */
+  section#directory > div:nth-child(2) > div:first-child > div:nth-child(2) {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    padding: 10px 12px !important;
+  }
+  section#directory > div:nth-child(2) > div:first-child > div:nth-child(2) strong {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+  /* CTA row — full-width buttons */
+  section#directory > div:nth-child(2) > div:first-child > div:nth-child(3) {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  section#directory > div:nth-child(2) > div:first-child > div:nth-child(3) a {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  /* Provider cards */
+  section#directory article {
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+  section#directory article h4 {
+    font-size: 0.88rem !important;
+    line-height: 1.35 !important;
+  }
+  section#directory article p {
+    font-size: 0.78rem !important;
+    line-height: 1.45 !important;
+  }
+  section#directory article > div:first-child {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 0.78rem !important;
+  }
+  /* Provider tag chips */
+  section#directory article > div:nth-child(2) > div:last-child span {
+    font-size: 0.66rem !important;
+    padding: 2px 7px !important;
+  }
+  /* "Verified" / "Relay-ready" badge inside provider card */
+  section#directory article > div:nth-child(2) > div:first-child span {
+    font-size: 0.6rem !important;
+    padding: 2px 7px !important;
+  }
+  /* Right-column value cards */
+  section#directory > div:nth-child(2) > div:nth-child(2) article {
+    padding: 16px !important;
+  }
+  section#directory > div:nth-child(2) > div:nth-child(2) article h3 {
+    font-size: 0.95rem !important;
+  }
+  section#directory > div:nth-child(2) > div:nth-child(2) article p {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* Sub-380px phones — drop footer link grid to 2 cols */
+@media (max-width: 380px) {
+  footer .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* Desktop: full-bleed divider above copyright + tight bottom padding */
+@media (min-width: 769px) {
+  footer.footer > div {
+    padding-bottom: 20px !important;
+  }
+  footer.footer > div > div:last-child {
+    padding: 22px 24px 0 !important;
+    margin: 0 -24px !important;
+    border-top: 1px solid var(--border) !important;
   }
 }
